@@ -1,0 +1,27 @@
+# =============================================================================
+# Releases (release-please): every merge to main updates one "release PR" – the next version, worked out from the
+# conventional commit messages (feat: → minor, fix: → patch; before 1.0 a feat still bumps only the minor), and
+# CHANGELOG.md. Merging that PR bumps VERSION, tags the commit (vX.Y.Z) and creates a GitHub release.
+# Nothing is applied here: terraform plan / apply stay with a person (README, section 4).
+#
+# Repo setting needed once: Settings → Actions → General → "Allow GitHub Actions to create and approve pull
+# requests".
+# =============================================================================
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write        # tag and GitHub release
+  pull-requests: write   # the release PR
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
