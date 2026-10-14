@@ -1,0 +1,22 @@
+# Terraform working files
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+crash.*.log
+
+# Plan files (contain resolved values; never commit)
+*.plan
+*.tfplan
+plan.txt
+plan-*.txt
+
+# environment/<env>/<region>/terraform.tfvars ARE committed: they hold ids and URLs, never secrets.
+# Keep .terraform.lock.hcl in git: it pins the exact provider versions for everyone and CI.
+
+.idea/
+.vscode/
+.claude/
+
+# Instructions for AI agents live outside git (as in the pipeline repository).
+CLAUDE.md
